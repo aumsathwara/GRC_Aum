@@ -213,7 +213,7 @@ Key classes include:
 
 ### **1. Initialization**
 
-![image.png](image.png)
+![image.png](./assets/image%203.png)
 
 1. Client sends **`initialize`** request with protocol version and capabilities ([example](https://www.notion.so/MCP-Architecture-Deep-Dive-1c4f4544c8d48094bf34da1b5bddae7a?pvs=21))
 2. Server responds with its protocol version and capabilities ([example](https://www.notion.so/MCP-Architecture-Deep-Dive-1c4f4544c8d48094bf34da1b5bddae7a?pvs=21))

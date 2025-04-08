@@ -138,11 +138,11 @@
 
 - Open your Claude for Desktop App configuration in a text editor: ( Shortcut key: ctrl+Comma)
     
-    ![image.png](image.png)
+    ![image.png](./assets/image%2013.png)
     
     - Go to developer tab
         
-        ![image.png](image%201.png)
+        ![image.png](./assets/image%2014.png)
         
     - Edit claude_desktop_config.json file
         
@@ -176,20 +176,20 @@ After saving the configuration, restart Claude for Desktop completely.
 
 Look for the hammer icon in the bottom right corner of the Claude for Desktop input box. Clicking it should show your server's tools.
 
-![image.png](image%202.png)
+![image.png](./assets/image%2015.png)
 
-![image.png](image%203.png)
+![image.png](./assets/image%2016.png)
 
 You can now ask Claude questions like:
 
 - "What's the weather in Chicago?"
 - "What are the active weather alerts in Chicago?"
     
-    ![image.png](image%204.png)
+    ![image.png](./assets/image%2017.png)
     
-    ![image.png](image%205.png)
+    ![image.png](./assets/image%2018.png)
     
-    ![image.png](image%206.png)
+    ![image.png](./assets/image%2019.png)
     
 
 # **Building a Custom MCP Client for Claude MCP Servers**

@@ -25,7 +25,7 @@
 - CLIENT
 - SERVER
 
-![image.png](image.png)
+![image.png](./assets/image.png)
 
 - Host → are LLM applications (like Claude Desktop or IDEs) that initiate connections
 - **Clients** → maintain 1:1 connections with servers, inside the host application.
@@ -35,7 +35,7 @@
 
 ### Server-Side Primitives
 
-![image.png](image%201.png)
+![image.png](./assets/image%201.png)
 
 | **Feature** | [**Tools**](https://modelcontextprotocol.io/docs/concepts/tools) | [**Resources**](https://modelcontextprotocol.io/docs/concepts/resources) | [**Prompts**](https://modelcontextprotocol.io/docs/concepts/prompts) |
 | --- | --- | --- | --- |

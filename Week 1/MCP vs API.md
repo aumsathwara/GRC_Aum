@@ -1,6 +1,6 @@
 # MCP vs API
 
-![image.png](image.png)
+![image.png](./assets/image%202.png)
 
 - Just as USB-C simplifies how you connect different devices to your computer, MCP simplifies how AI models interact with your data, tools, and services.
 

@@ -31,7 +31,7 @@
 
 The SDK follows a layered architecture with clear separation of concerns:
 
-![image.png](image.png)
+![image.png](./assets/image%204.png)
 
 - **Client/Server Layer (McpClient/McpServer)**:
     - Both use **McpSession for sync/async operations.**
@@ -46,11 +46,11 @@ The SDK follows a layered architecture with clear separation of concerns:
 
 The MCP Client is a key component in the Model Context Protocol (MCP) architecture, responsible for establishing and managing connections with MCP servers. It implements the client-side of the protocol.
 
-![image.png](image%201.png)
+![image.png](./assets/image%205.png)
 
 The MCP Server is a foundational component in the Model Context Protocol (MCP) architecture that provides tools, resources, and capabilities to clients. It implements the server-side of the protocol.
 
-![image.png](image%202.png)
+![image.png](./assets/image%206.png)
 
 Key Interactions:
 

@@ -100,62 +100,62 @@ uv run mcp
         - It may ask you to download dependencies, in that case press “Y”
         - Else it will return below results
             
-            ![image.png](image.png)
+            ![image.png](./assets/image.png)
             
         - Hit the url and you will see a web app as below
             
-            ![image.png](image%201.png)
+            ![image.png](./assets/image%201.png)
             
             - Hit the **command button and you will see following update**
             
-            ![image.png](image%202.png)
+            ![image.png](./assets/image%202.png)
             
             - Remember we added a tool called “add” and a resource called “get_greetings”? Let’s fetch it
                 - TOOLS
                     - Go to tools section from header and hit “List Tools” button to see the following screen
                         
-                        ![image.png](image%203.png)
+                        ![image.png](./assets/image%203.png)
                         
                         - If success, you will see “add”
                         - Click on add and put any two numbers to test the tool
                         
-                        ![image.png](image%204.png)
+                        ![image.png](./assets/image%204.png)
                         
                 - RESOURCES
                     - Go to Resources section from header and click on “List Templates” under Resource Templates pane
                         
-                        ![image.png](image%205.png)
+                        ![image.png](./assets/image%205.png)
                         
                         - If success, it will show get_greeting under it
                         - Click on it and enter your name in right pane
                         
-                        ![image.png](image%206.png)
+                        ![image.png](./assets/image%206.png)
                         
                         - Once done hit “Read Resource” button to get following results
                         
-                        ![image.png](image%207.png)
+                        ![image.png](./assets/image%207.png)
                         
         - Understanding Logs
             - While you performed all the above tasks you might have noticed below logs being created under History Pane
                 
-                ![image.png](image%208.png)
+                ![image.png](./assets/image%208.png)
                 
                 - Select any one for further analysis (in my case I am selecting tools/list)
                     - When you clicked on List Tools button, the client sends a request as below
                         
-                        ![image.png](image%209.png)
+                        ![image.png](./assets/image%209.png)
                         
                     - The server replies back with all the tools it has
                         
-                        ![image.png](image%2010.png)
+                        ![image.png](./assets/image%2010.png)
                         
                     - when we select add and input two numbers, the client passes those number as arguments to server
                         
-                        ![image.png](image%2011.png)
+                        ![image.png](./assets/image%2011.png)
                         
                     - The server replies back with following response
                         
-                        ![image.png](image%2012.png)
+                        ![image.png](./assets/image%2012.png)
                         
 
 ## Citation
