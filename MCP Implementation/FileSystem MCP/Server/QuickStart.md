@@ -141,19 +141,19 @@
     
 - Click on the link generated
     
-    ![image.png](./assets/image.png)
+    ![image.png](../assets/image.png)
     
 - Click Connect button
     
-    ![image.png](./assets/image%201.png)
+    ![image.png](../assets/image%201.png)
     
 - Once Connected, Click on Tools in navigation header and click on List Tools button to see all the tools
     
-    ![image.png](./assets/image%202.png)
+    ![image.png](../assets/image%202.png)
     
 - Click on any tool and test it
     
-    ![image.png](./assets/image%203.png)
+    ![image.png](../assets/image%203.png)
     
 
 ### Claude Desktop Integration
@@ -162,7 +162,7 @@
 - Set up desktop app
 - Click on File > Settings or press  Ctrl + Comma to open Settings
     
-    ![image.png](./assets/image%204.png)
+    ![image.png](../assets/image%204.png)
     
 - Go to Developer tab and Click on Edit Config to open root directory of Claude Desktop app installed location
 - Open claude_desktop_config.json in notepad
@@ -185,10 +185,10 @@
     
 - Once done save the file and restart Claude Desktop Application to see a hammer shaped icon
     
-    ![image.png](./assets/image%205.png)
+    ![image.png](../assets/image%205.png)
     
 - Input below prompt to test search tool
     
     “give me all pdf files present in the directory”
     
-    ![image.png](./assets/image%206.png)
+    ![image.png](../assets/image%206.png)

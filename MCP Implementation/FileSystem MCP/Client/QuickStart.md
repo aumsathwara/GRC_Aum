@@ -1,4 +1,4 @@
- v# FileSystem MCP Client
+# FileSystem MCP Client
 
 ## QuickStart
 
@@ -216,8 +216,8 @@
     
 - Wait for a while to see below output
     
-    ![image.png](./assets/image%207.png)
+    ![image.png](../assets/image%207.png)
     
 - Test it with a query like “give me all text files in test_folder”
     
-    ![image.png](./assets/image%208.png)
+    ![image.png](../assets/image%208.png)
