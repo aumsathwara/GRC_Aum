@@ -50,7 +50,8 @@ cd GRC_Aum
 1. **FileSystem MCP**
 ```bash
 cd MCP Implementation/FileSystem MCP
-uv add "mcp[cli]" &amp;&amp; uv run server.py
+uv add "mcp[cli]"
+uv run server.py
 ```
 
 2. **Python SDK**
@@ -61,7 +62,7 @@ uv pip install -r requirements.txt
 
 3. **IOWarp Deployment**
 ```bash
-cd MCP on 20IOWarp
+cd MCP on IOWarp
 docker compose up -d
 ```
 
