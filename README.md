@@ -9,8 +9,6 @@ This repository provides a comprehensive implementation of the Model Context Pro
 - **SDK \& Development Tools**: Python SDK with CLI support and Claude Desktop integrations
 - **Enterprise Deployment**: Docker/IOWarp configurations for scalable deployments
 
-MCP Architecture
-
 ## Features
 
 **Core Protocol Features**
@@ -28,7 +26,6 @@ MCP Architecture
 | FileSystem MCP | Secure read/write/search operations with path validation | Document management, Code analysis |
 | Weather MCP | Real-time forecast/alerts via NWS API | Travel assistants, Event planning |
 | Python SDK | Rapid server development with FastMCP class | Custom tool creation, API integrations |
-| IOWarp Deployment | Containerized MCP services with resource isolation | Enterprise deployments, Multi-tenant systems |
 
 ## Prerequisites
 
