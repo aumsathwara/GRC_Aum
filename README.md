@@ -49,7 +49,7 @@ cd GRC_Aum
 
 1. **FileSystem MCP**
 ```bash
-cd MCP%20Implementation/FileSystem%20MCP
+cd MCP Implementation/FileSystem MCP
 uv add "mcp[cli]" &amp;&amp; uv run server.py
 ```
 
@@ -61,7 +61,7 @@ uv pip install -r requirements.txt
 
 3. **IOWarp Deployment**
 ```bash
-cd MCP%20on%20IOWarp
+cd MCP on 20IOWarp
 docker compose up -d
 ```
 
@@ -72,7 +72,7 @@ docker compose up -d
 
 1. Start MCP Server
 ```bash
-uv run mcp dev MCP%20Implementation/FileSystem%20MCP/Server/server.py
+uv run mcp dev MCP Implementation/FileSystem MCP/Server/server.py
 ```
 
 2. Connect via Client
