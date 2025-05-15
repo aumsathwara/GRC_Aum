@@ -1,172 +1,156 @@
-# Jarvis-MCP  
-*A Model-Context-Protocol bridge for Jarvis-CD pipelines*
----
 
-A **Gemini client + server framework** that lets you drive Jarvis-CD pipelines and Jarvis-util package through the Model Context Protocol (MCP).  
-It supports both **stdio** and **SSE** transports, runs **locally or remotely**, and wraps **Jarvis-CD’s Pipeline & JarvisManager APIs** behind easy-to-call MCP “tools.”
+# Jarvis-MCP
+
+*A Gemini client + MCP server to interact with Jarvis*
 
 ---
 
-## Project Structure
+## Overview
+
+**Jarvis-MCP** is a Python package that allows you to control Jarvis using a Gemini-powered client and a Model Context Protocol (MCP) server.
+
+With **Jarvis-MCP**, you can:
+
+* Initialize and configure Jarvis
+* Bootstrap from ARES
+* Create, list, run, and destroy pipelines
+* Add or remove packages from a pipeline
+* Update package configurations
+* Build and run pipelines
+
+---
+
+## How to Use
+
+To run **Jarvis-MCP** on **ARES** or any **root node**, use:
+
+```bash
+python3 [path/to/client.py] --server-script [path/to/server.py]
+```
+
+Example:
+
+```bash
+python3 src/jarvis_mcp/client.py --server-script src/jarvis_mcp/server.py
+```
+
+This command will start the client and connect it to the MCP server.
+
+"OR" simply type
+```bash
+mcp-client 
+```
+
+Refer to Installation and setup [guide.](GUIDE.md)
+
+
+---
+
+## Operations and Screenshots
+
+### 1. **Initialize Jarvis**
+
+The first step is to initialize Jarvis. This prepares the system for interaction.
+
+```bash
+# Command to initialize Jarvis
+Query: Initialize jarvis with configur, private and shared dir as " . /jarvis—pipelines'
+```
+
+**Output Screenshot**
+![alt text](<assets/Screenshot 2025-05-15 160800.png>)
+
+---
+
+### 2. **Create Pipeline (`ior_test`) and append package**
+
+Create a new pipeline named `ior_test` and append package to it. This will be used for testing purposes.
+
+```bash
+# Command to create a pipeline
+Query: create a pipeline called ior_test and append package ior to it
+```
+
+**Output Screenshot**
+![alt text](<assets/Screenshot 2025-05-15 162219.png>)
+
+---
+
+### 4. **Change Configuration of Added Package**
+
+You can also see and modify the configuration of the package you've added to the pipeline.
+
+```bash
+# Command to change the configuration
+Query: show the configuration of ior in ior_test
+```
+
+**Output Screenshot**
+![alt text](<assets/Screenshot 2025-05-15 162322.png>)
+
+```bash
+# Command to change the configuration
+Query: update the nprocs to 8 for package ior in pipeline ior_test
+```
+
+![alt text](<assets/Screenshot 2025-05-15 162545.png>)
+---
+
+### 5. **Build Environment for `ior_test` Pipeline**
+
+After configuring the pipeline, you can build the environment for `ior_test`.
+
+```bash
+# Command to build the environment
+Query: Build environment for pipeline ior_test 
+```
+
+**Output Screenshot**
+![alt text](<assets/Screenshot 2025-05-15 162922.png>)
+---
+
+### 6. **Run the Pipeline (`ior_test`)**
+
+Finally, you can run the pipeline to see everything in action.
+
+```bash
+# Command to run the pipeline
+Query: select the pipeline ior_test and run it
+```
+
+**Output Screenshot**
+![alt text](<assets/Screenshot 2025-05-15 163023.png>)
+
+---
+
+or **Just write below**:
+```bash
+Query: create a pipeline called ior_test_2. Add package ior with nprocs set to 16. After adding, set the pipeline ior_test_2 as current and build environment for it and run it.
+```
+![alt text](<assets/Screenshot 2025-05-15 163759.png>)
+
+---
+## Directory Structure
+
 ```
 Jarvis-MCP/
-├── pyproject.toml         # Project metadata / deps
-├── requirements.txt       # PyPI + VCS pins
-├── README.md              # ← main overview (this file)
-├── DEPLOYMENT.md          # Local / remote × stdio / SSE guide
+├── README.md              # ← This file
+├── DEPLOYMENT.md          # Extra details (SSE, Docker, etc.)
+├── pyproject.toml         # Python package config
+├── requirements.txt       # All dependencies (incl. GitHub links)
+├── uv.lock                # Dependency lock file
 └── src/
     └── jarvis_mcp/
-        ├── server.py      # FastMCP server entry-point
-        ├── client.py      # LLM-driven MCP client
+        ├── client.py      # Gemini-based interactive client
+        ├── server.py      # MCP server for Jarvis tools
         └── capabilities/
-            └── jarvis_handler.py  # Tools → Jarvis-CD wrappers
+            └── jarvis_handler.py  # Actual functions that control Jarvis
 ```
 
 ---
 
-## Quick Installation
+## Notes
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/aumsathwara/jarvis-mcp.git
-cd jarvis-mcp
-```
-2. **Create a virtual environment**
-```bash
-python -m venv .venv
-source .venv/bin/activate         # Windows: .venv\Scripts\activate
-```
-3. **Install dependencies**
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt   # includes git-hosted jarvis-cd & jarvis-util
-pip install -e .                  # editable install (adds CLI scripts)
-```
-
-You now have two commands on your **PATH**:
-| Command      | Purpose                                          |
-| ------------ | ------------------------------------------------ |
-| `mcp-server` | Launch FastMCP server (stdio **or** SSE)         |
-| `mcp-client` | Interactive CLI that lists tools & drives Gemini |
-
-> [!NOTE]
-> To run mcp-client you need to setup .env file with GEMINI_API_KEY variable or you can test mcp-server by
-> ```bash
-> mcp dev src/jarvis_mcp/server.py
-> ```
----
-
-## Running It 
-
-A. **Local quick-start (stdio)**
-
-```bash
-# Terminal 1
-mcp-server
-# or
-python src/jarvis_mcp/server.py           
-```
-
-```bash
-# Terminal 2
-mcp-client
-# or
-python src/jarvis_mcp/client.py
-```
-The output should look like below:
-![alt text](assets/local_local-stdio.png)
-
-
-B. **Local SSE (multi-client / Inspector)**
-```bash
-# Terminal 1 – start server
-export MCP_TRANSPORT=sse
-export MCP_SSE_HOST=0.0.0.0
-export MCP_SSE_PORT=3001
-mcp-server               # listens on http://localhost:3001/sse
-```
-or create a .env file with `MCP_TRANSPORT`, `MCP_SSE_HOST`, `MCP_SSE_PORT`
-
-```bash
-# Terminal 2 – connect client
-export MCP_TRANSPORT=sse
-export MCP_SSE_HOST=0.0.0.1
-export MCP_SSE_PORT=3001
-mcp-client
-```
-or create a .env file with `MCP_TRANSPORT`, `MCP_SSE_HOST`, `MCP_SSE_PORT`
-
-The output should look like below:
-![alt text](assets/local_local-sse.png)
-
-C. **Docker SSE**
-```bash
-docker build -t jarvis-mcp:latest .
-docker run -d --name jarvis-mcp -p 3001:3001 jarvis-mcp:latest
-```
-Test stream is up:
-```bash
-curl -N -H "Accept: text/event-stream" http://localhost:3001/sse
-```
-The output should look like below:
-![alt text](assets/local_remote-sse.png)
-
-
-D. **Remote stdio (SSH)**
-```bash
-ssh user@remote 'source ~/env/bin/activate && mcp-server'  # run server
-# On local machine, attach your own stdio bridge or use SSH-stdin tunneling
-```
-
-More detailed deployment methods → [DEPLOYMENT.md](DEPLOYMENT.md).
-
----
-
-## Features 🔑
-
-| Feature                  | What you get                                                                            |
-| ------------------------ | --------------------------------------------------------------------------------------- |
-| **Dual transport**       | • **stdio** for zero-config local use<br>• **SSE** for multi-client & GUI/Inspector use |
-| **LLM-powered client**   | Gemini 1.5 Flash Pro chooses and calls tools automatically via MCP function-calling         |
-| **Pluggable tools**      | Any `@mcp.tool` instantly available in clients & the Inspector                          |
-| **Docker-ready**         | Single-stage `Dockerfile` exposes SSE on **port 3001**                                  |
-| **Requirements pinning** | `requirements.txt` pulls `jarvis-cd` / `jarvis-util` directly from GitHub               |
-
----
-
-## How It Works ⚙️
-
-1. **`mcp-server` startup**
-
-   * Reads `MCP_TRANSPORT` (`stdio` | `sse`).
-        * *stdio* → `mcp.run(transport="stdio")`.
-        * *SSE*   → serves the FastMCP ASGI app on `/sse` with **Uvicorn**.
-
-2. **Tool registration**
-
-   ```python
-   @mcp.tool(name="create_pipeline", description="Create …")
-   async def create_pipeline_tool(...):
-       …
-   ```
-
-   becomes JSON-RPC method **`create_pipeline`** with an Open-RPC schema.
-
-3. **`mcp-client` flow**
-
-   1. Connect via chosen transport.
-   2. Fetch tool list & JSON schema.
-   3. Feed them to Gemini as `function_declarations`.
-   4. Parse Gemini’s `function_call`, invoke `call_tool`, print result.
-
-4. **Jarvis-CD plumbing**
-
-   * `Pipeline().create/append/run/destroy` etc.
-   * `JarvisManager.get_instance()` for global config & resource graphs.
-
----
-
-### Next Steps
-
-* **`DEPLOYMENT.md`** → exact commands for local/remote × stdio/SSE.
-* Run `mcp dev` to open the Inspector for JSON-RPC communication and debug.
+* Ensure your environment is set up with Python 3.8+
+* You’ll need an `.env` file if you're using the Gemini API directly
+* Use `pip install -e .` in the repo to enable CLI tools like `mcp-client` or `mcp-server` (optional)
