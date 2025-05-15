@@ -32,21 +32,18 @@ This project enables secure file system operations through an MCP (Modular Comma
 
 ### 1. Initialize Project
 ```
-
 uv init filesystem-mcp
 cd filesystem-mcp
-
 ```
 
 ### 2. Install Dependencies
 ```
 
 uv add "mcp[cli]"
-
 ```
 
 ### 3. Create Server File
-Create `server.py` with [this code](./FileSystem%20MCP/Server/server.py) containing:
+Create `server.py` with [this code](./Server/server.py) containing:
 - Path normalization logic
 - Security constraints (`ALLOWED_DIRS`)
 - Three core tools:
@@ -56,19 +53,15 @@ Create `server.py` with [this code](./FileSystem%20MCP/Server/server.py) contain
 
 ### 4. Security Configuration
 ```
-
-
 # Restrict operations to current directory by default
 
 ALLOWED_DIRS = [Path.cwd()]
-
 ```
 
 ### 5. Run Server
 ```
 
 uv run mcp dev server.py
-
 ```
 - Access MCP Inspector at `http://localhost:8000` to test tools
 
@@ -79,22 +72,18 @@ uv run mcp dev server.py
 ### 1. Environment Configuration
 Create `.env` file:
 ```
-
 GEMINI_API_KEY="your_actual_key_here"
-
 ```
 
 ### 2. Create Client File
-Save as `client.py` with [provided code](./FileSystem%20MCP/Client/client.py) featuring:
+Save as `client.py` with [provided code](./Client/client.py) featuring:
 - Gemini 2.0 Flash integration
 - Tool schema autodetection
 - Interactive chat interface
 
 ### 3. Runtime Execution
 ```
-
 uv run client.py server.py
-
 ```
 
 ---
