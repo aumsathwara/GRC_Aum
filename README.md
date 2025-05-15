@@ -25,7 +25,7 @@ This is a working MCP tool that connects to **Jarvis-CD pipelines**.
 * Supports both standard output and SSE.
 
 📄 [Jarvis-MCP README](./Jarvis-MCP/README.md)
-📄 [How to deploy](./Jarvis-MCP/DEPLOYMENT.md)
+📄 [How to install and setup](./Jarvis-MCP/GUIDE.md)
 
 ---
 
