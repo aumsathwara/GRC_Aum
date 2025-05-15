@@ -1,5 +1,6 @@
 from fastapi import HTTPException
 from jarvis_cd.basic.pkg import Pipeline
+import os
 
 async def create_pipeline(pipeline_id: str) -> dict:
     try:
@@ -11,7 +12,7 @@ async def create_pipeline(pipeline_id: str) -> dict:
 async def load_pipeline(pipeline_id: str = None) -> dict:
     try:
         pipeline = Pipeline().load(pipeline_id)
-        return {"pipeline_id": pipeline.pipeline_id, "status": "loaded"}
+        return {"pipeline_id": pipeline_id, "status": "loaded"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Load failed: {e}")
 
@@ -40,14 +41,77 @@ async def append_pkg(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Append failed: {e}")
 
+
+async def build_pipeline_env(pipeline_id: str) -> dict:
+    """
+    Load a Jarvis-CD pipeline, rebuild its environment cache,
+    tracking only CMAKE_PREFIX_PATH and PATH from the current shell, then save.
+    """
+    try:
+        # 1. Load the existing pipeline
+        pipeline = Pipeline().load(pipeline_id)
+
+        # 2. Always track these two vars
+        default_keys = ["CMAKE_PREFIX_PATH", "PATH"]
+        env_track_dict = {key: True for key in default_keys}
+
+        # 3. Rebuild the env cache, track only those vars, and save
+        pipeline.build_env(env_track_dict).save()
+
+        return {
+            "pipeline_id": pipeline_id,
+            "status": "environment_built"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Build env failed: {e}")
+
+
+async def update_pipeline(pipeline_id: str) -> dict:
+    """
+    Re-apply the current environment & configuration to every pkg in the pipeline,
+    then persist the updated pipeline.
+    """
+    try:
+        pipeline = Pipeline().load(pipeline_id)
+        pipeline.update()  # re-run configure on all sub-pkgs
+        pipeline.save()    # persist any changes
+        return {"pipeline_id": pipeline_id, "status": "updated"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Update failed: {e}")
+
+
 async def configure_pkg(pipeline_id: str, pkg_id: str, **kwargs) -> dict:
     try:
         pipeline = Pipeline().load(pipeline_id)
-        pkg = pipeline.get_pkg(pkg_id)
-        pkg.configure(**kwargs).save()
+        # configure the pkg (this does NOT return self)
+        pipeline.configure(pkg_id, **kwargs)
+
+        # now save the entire pipeline (which will recurse and save each sub-pkg)
+        pipeline.save()
         return {"pipeline_id": pipeline_id, "configured": pkg_id}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Configure failed: {e}")
+
+async def get_pkg_config(pipeline_id: str, pkg_id: str) -> dict:
+    try:
+        # 1. Load the pipeline
+        pipeline = Pipeline().load(pipeline_id)
+
+        # 2. Lookup the pkg
+        pkg = pipeline.get_pkg(pkg_id)
+        if pkg is None:
+            raise HTTPException(status_code=404, detail=f"Package '{pkg_id}' not found")
+
+        # 3. Return its config dict
+        return {
+            "pipeline_id": pipeline.global_id,
+            "pkg_id": pkg_id,
+            "config": pkg.config
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Get config failed: {e}")
 
 async def unlink_pkg(pipeline_id: str, pkg_id: str) -> dict:
     try:

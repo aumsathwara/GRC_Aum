@@ -14,7 +14,10 @@ from jarvis_mcp.capabilities.jarvis_handler import (
     unlink_pkg,
     remove_pkg,
     run_pipeline,
-    destroy_pipeline
+    destroy_pipeline,
+    get_pkg_config,
+    update_pipeline,
+    build_pipeline_env
 )
 
 # Import JarvisManager (singleton-based configuration and repo manager)
@@ -30,6 +33,25 @@ manager = JarvisManager.get_instance()
 
 # ─── PIPELINE TOOLS ─────────────────────────────────────────────────────────────
 
+@mcp.tool(
+    name="update_pipeline",
+    description="Re-apply environment & configuration to every package in a Jarvis-CD pipeline."
+)
+async def update_pipeline_tool(pipeline_id: str) -> dict:
+    """Tool wrapper for the update_pipeline function."""
+    return await update_pipeline(pipeline_id)
+
+@mcp.tool(
+    name="build_pipeline_env",
+    description="Rebuild a Jarvis-CD pipeline’s env.yaml, capturing only CMAKE_PREFIX_PATH and PATH"
+)
+async def build_pipeline_env_tool(
+    pipeline_id: str
+) -> dict:
+    return await build_pipeline_env(pipeline_id)
+
+
+
 @mcp.tool(name="create_pipeline", description="Create a new Jarvis-CD pipeline environment.")
 async def create_pipeline_tool(pipeline_id: str) -> dict:
     """Create a new pipeline with the given pipeline ID."""
@@ -41,6 +63,9 @@ async def load_pipeline_tool(pipeline_id: str = None) -> dict:
     """Load an existing pipeline by ID, or the current one if not specified."""
     return await load_pipeline(pipeline_id)
 
+@mcp.tool(name="get_pkg_config",description="Retrieve the configuration of a specific package in a Jarvis-CD pipeline.")
+async def get_pkg_config_tool(pipeline_id: str, pkg_id: str) -> dict:
+    return await get_pkg_config(pipeline_id, pkg_id)
 
 @mcp.tool(name="append_pkg", description="Append a package to a Jarvis-CD pipeline.")
 async def append_pkg_tool(pipeline_id: str, pkg_type: str, pkg_id: str = None, do_configure: bool = True, extra_args: dict = None) -> dict:

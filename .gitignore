@@ -1,12 +1,8 @@
-mcp-py/
-mcp-py-2/
 custom-mcp/
 IOWARP/
-MCP/
+iowarp_interface/
+Jarvis-MCP/src/jarvis_mcp/.env
 Research Poster/
 Extended_Abstract.pdf
 .MCP_servers_first_weeks 1.pdf
 Research_Poster_Aum_.pdf
-mcps/
-
-Jarvis-MCP/src/jarvis_mcp/.env
