@@ -11,12 +11,14 @@
 
 With **Jarvis-MCP**, you can:
 
-* Initialize and configure Jarvis
-* Bootstrap from ARES, local or other machine 
-* Create, list, run, and destroy pipelines
+* Initialize, configure, load and save configuration for Jarvis
+* List and bootstrap from ARES, local or other machine 
+* Create, list, run, set, and destroy pipelines
+* List, remove, promote, get all Jarvis repositories
 * Add or remove packages from a pipeline
 * Update package configurations
 * Build and run pipelines
+* Print, build and modify a resource graph
 
 ---
 

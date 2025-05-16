@@ -1,6 +1,6 @@
 # ReadME 
 
-This repo contains all work related to **Model Context Protocol (MCP)** — including documentation, and working projects. It’s organized for anyone to explore and test.
+This repo contains mini projects related to **Model Context Protocol (MCP)**, including documentation, and working projects. It’s organized for anyone to explore and test.
 
 ---
 
@@ -38,11 +38,28 @@ A collection of MCP tools, each in its own folder:
 
 You can install them one by one using their `pyproject.toml` "OR" all together.
 
+📄 [How to Install and Setup](./Multiple%20MCP/README.md)
+
 ---
 
+### [`Skeleton PyProject.toml`](./pyproject.toml)
+
+A skeleton pyproject file for installing multiple mcps all together with a single uv command:
+
+- For installation, if your have already intiailized a uv project then 
+    ```bash
+    uv add "git+https://github.com/{username}/{main-repo}.git@{branch}"
+    ```
+- If not then,
+    ```bash
+    uv pip install "git+https://github.com/{username}/{main-repo}.git@{branch}"
+    ```
+
+---
 
 ## 📬 Contact
 
-Maintained by Aum Vinodchandra Sathwara
+Maintained by Aum Sathwara
+
 GitHub: [@aumsathwara](https://github.com/aumsathwara)
 
