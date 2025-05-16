@@ -12,7 +12,7 @@ All notes and guides about MCP.
 
 * **[How MCP works](./Documentation/MCP%20Deep%20Dive/)** – Basics, how it works, and key terms.
 * **[Step-by-step examples](./Documentation/Basic%20MCP%20Implementation/)** – Tutorials with real code (like file system or weather tools).
-* **[Using the Python MCP SDK](./Documentation/Basic%20MCP%20Implementation/MCP%20Python%20SDK/)** – How to use Python to make MCP tools and connect them to AI.
+* **[Using the Python MCP SDK](./Documentation/Basic%20MCP%20Implementation/MCP%20Python%20SDK/)** – How to use Python to make MCP tools and connect them to different AI.
 
 ---
 

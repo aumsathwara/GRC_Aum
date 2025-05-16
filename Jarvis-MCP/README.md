@@ -85,7 +85,7 @@ Query: Initialize jarvis with configur, private and shared dir as " . /jarvis—
 
 **Output Screenshot**
 
-![alt text](<assets/Screenshot 2025-05-15 160800.png>)
+![Screenshot of initializing jarvis using Gemini client](<assets/Screenshot 2025-05-15 160800.png>)
 
 ---
 
